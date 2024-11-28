@@ -1,0 +1,37 @@
+<div class="form-container">
+  <h1>Edit Private Class</h1>
+
+  <!-- Form for editing a private class -->
+  <%= form_with(model: @private_class, url: private_class_path(@private_class), method: :patch) do |f| %>
+    <!-- Field for selecting the gym staff -->
+    <div>
+      <%= f.label :gym_staff_id, "Gym Staff" %>
+      <%= f.collection_select :gym_staff_id, GymStaff.all.order(:first_name), :id, :full_name, prompt: "Select a Gym Staff" %>
+    </div>
+    <!-- Field for selecting the gym member -->
+    <div>
+      <%= f.label :gym_member_id, "Gym Member" %>
+      <%= f.collection_select :gym_member_id, GymMember.all.order(:first_name), :id, :full_name, prompt: "Select a Gym Member" %>
+    </div>
+    <!-- Field for selecting the date of the private class -->
+    <div>
+      <%= f.label :date %>
+      <div class="form-inline">
+        <%= f.date_select :date, { order: [:day, :month, :year] }, class: "form-inline" %>
+      </div>
+    </div>
+    <!-- Field for selecting the time of the private class -->
+    <div>
+      <%= f.label :time %>
+      <div class="form-inline">
+        <%= f.time_select :time, { minute_step: 1 }, class: "form-inline" %>
+      </div>
+    </div>
+
+    <!-- Submit button for updating the private class -->
+    <%= f.submit "Update Private Class", class: "button" %>
+  <% end %>
+
+  <!-- Link to navigate back to the list of private classes -->
+  <%= link_to "Back to Private Classes", private_class_index_path, class: "link-back" %>
+</div>

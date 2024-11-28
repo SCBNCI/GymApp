@@ -1,0 +1,2 @@
+module PrivateClassesHelper
+end

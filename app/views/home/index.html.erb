@@ -1,0 +1,76 @@
+<section class="hero">
+  <h1>Welcome to Fast Fit Gym</h1>
+  <p>Your journey to a healthier and happier life starts here. Join our community today!</p>
+  
+  <!-- Buttons for booking private and group classes -->
+  <div class="button-container">
+    <%= link_to "Book a Private Class", new_private_class_path, class: "btn-primary" %>
+    <%= link_to "Book a Group Class", group_class_index_path, class: "btn-primary" %>
+  </div>
+</section>
+
+<section class="about-snippet">
+  <h2>About Us</h2>
+  <!-- Overview of the gym mission and community focus -->
+  <p>Fast Fit Gym is committed to helping you achieve your fitness goals with state-of-the-art facilities and personalized training programs.</p>
+  <p>We believe in the power of community. Through our classes, events, and personal training sessions, we have fostered a space where friendships are built, and goals are celebrated. From yoga and strength training to specialized fitness programs, our offerings continue to evolve to meet the diverse needs of our members.</p>
+  <!-- Button linking to the About Us page -->
+  <a href="<%= about_path %>" class="btn-secondary">Learn More</a>
+</section>
+
+<!-- Gym Image Gallery Section -->
+<section class="home-images">
+<h2 style="margin-top: 50px;">Explore Our Gym</h2>
+  <!-- Grid layout for gym images -->
+  <div class="image-grid">
+    <div class="image-item">
+      <img src="<%= asset_path 'gym3.jpg' %>" alt="Welcome to Fast Fit Gym">
+      <p class="image-caption">Welcome to Fast Fit Gym</p>
+    </div>
+    <div class="image-item">
+      <img src="<%= asset_path 'gym2.jpg' %>" alt="Our Trainers in Action">
+      <p class="image-caption">Our Trainers in Action</p>
+    </div>
+    <div class="image-item">
+      <img src="<%= asset_path 'gym4.jpg' %>" alt="Modern Fitness Equipment">
+      <p class="image-caption">Modern Fitness Equipment</p>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <h2 style="margin-top: 50px;">Our Services</h2>
+  <!-- List of gym services -->
+  <div class="service-list">
+    <div class="service-item">
+      <h3>Private Classes</h3>
+      <p>Our private classes offer personalized training tailored to your specific fitness goals. Our certified trainers work closely with you to design a customized workout plan, ensuring safe and effective progress. Perfect for beginners or those looking to reach new performance levels.</p>
+    </div>
+    <div class="service-item">
+      <h3>Group Classes</h3>
+      <p>Our group classes are designed to inspire and motivate. Whether it is yoga, spinning, or HIIT, you will find a vibrant community of members sharing the same goal: staying active and healthy. Have fun while reaching your fitness goals with the guidance of our experienced instructors.</p>
+    </div>
+    <div class="service-item">
+      <h3>State-of-the-Art Equipment</h3>
+      <p>Our state-of-the-art equipment is designed to meet the needs of all fitness levels, from beginners to advanced athletes. Explore our modern treadmills, strength machines, and functional training tools that make every workout effective and enjoyable.</p>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <h2>What Our Members Say</h2>
+  <!-- Customer testimonials -->
+  <blockquote>"Fast Fit Gym transformed my fitness journey! The trainers are amazing." - Sarah E.</blockquote>
+  <blockquote>"The group classes are so much fun and keep me motivated!" - Daniel G.</blockquote>
+  <blockquote>"The trainers at Fast Fit Gym are incredibly supportive and knowledgeable. I've never felt more confident in my fitness journey!" - Donna L.</blockquote>
+  <blockquote>"The environment at Fast Fit Gym is so welcoming and motivating. I look forward to every session!" - Charles H.</blockquote>
+</section>
+
+<!-- Contact Section for contact details -->
+<section class="contact">
+  <h2 style="margin-top: 70px;">Contact Us</h2>
+  <p>We are here to help you with your fitness goals and answer any questions about our facilities or programs.</p>
+  <p>Have questions? Reach out to us at <a href="mailto:x23323205@student.ncirl.ie">info@fastfitgym.com</a> or call us at +353 85 456 7890.</p>
+  <!-- Button linking to the contact page -->
+  <a href="<%= contact_path %>" class="btn-secondary">Contact Us</a>
+</section>

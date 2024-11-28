@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Set the title dynamically or use "Fast Fit Gym" as the default -->
+    <title><%= content_for(:title) || "Fast Fit Gym" %></title>
+    <!-- Ensure the page is responsive on all devices -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- Enable Apple Web App compatibility -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %> <!-- Include CSRF token for security -->
+    <%= csp_meta_tag %> <!-- Include Content Security Policy (CSP) meta tags -->
+
+    <%= yield :head %>
+
+    <!-- Add site manifest for Progressive Web App support -->
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+    <!-- Include main stylesheet -->
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </head>
+
+  <body>
+    <%= render 'layouts/header' %> <!-- Include header -->
+    
+    <main>
+      <!-- Display flash notice messages if present -->
+      <% if flash[:notice] %>
+        <div class="flash-message notice">
+          <span class="close">&times;</span>
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+
+      <!-- Display flash alert messages if present -->
+      <% if flash[:alert] %>
+        <div class="flash-message alert">
+          <span class="close">&times;</span>
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+
+      <%= yield %> <!-- Main content of the page -->
+    </main>
+    
+    <%= render 'layouts/footer' %> <!-- Render the shared footer -->
+
+    <!-- JavaScript to enable closing flash messages -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const closeButtons = document.querySelectorAll('.flash-message .close');
+
+        closeButtons.forEach(button => {
+          button.addEventListener('click', function() {
+            this.parentElement.style.display = 'none';
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

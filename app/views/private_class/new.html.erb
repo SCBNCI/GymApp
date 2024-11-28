@@ -1,0 +1,52 @@
+<div class="form-container">
+  <h1>New Private Class</h1>
+
+  <!-- Display error messages if there are any validation errors -->
+  <% if @private_class.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@private_class.errors.count, "error") %> prohibited this private class from being saved:</h2>
+      <ul>
+        <% @private_class.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- Form for creating a new private class -->
+  <%= form_with(model: @private_class, url: private_class_index_path) do |f| %>
+
+    <!-- Field for selecting the gym staff -->
+    <div>
+      <%= f.label :gym_staff_id, "Gym Staff" %>
+      <%= f.collection_select :gym_staff_id, GymStaff.all.order(:first_name), :id, :full_name, prompt: "Select a Gym Staff" %>
+    </div>
+
+    <!-- Field for selecting the gym member -->
+    <div>
+      <%= f.label :gym_member_id, "Gym Member" %>
+      <%= f.collection_select :gym_member_id, GymMember.all.order(:first_name), :id, :full_name, prompt: "Select a Gym Member" %>
+    </div>
+
+    <!-- Field for selecting the date of the private class -->
+    <div>
+      <%= f.label :date %>
+      <div class="form-inline">
+        <%= f.date_select :date, { order: [:day, :month, :year] }, class: "form-inline" %>
+      </div>
+    </div>
+
+    <!-- Field for selecting the time of the private class -->
+    <div>
+      <%= f.label :time %>
+      <div class="form-inline">
+        <%= f.time_select :time, { minute_step: 1 }, class: "form-inline" %>
+      </div>
+    </div>
+    <!-- Submit button for booking the private class -->
+    <%= f.submit "Book a Private Class", class: "button" %>
+  <% end %>
+
+  <!-- Link to navigate back to the list of private classes -->
+  <%= link_to "Back to Private Classes", private_class_index_path, class: "link-back" %>
+</div>

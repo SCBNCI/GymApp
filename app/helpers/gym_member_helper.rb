@@ -1,0 +1,2 @@
+module GymMemberHelper
+end

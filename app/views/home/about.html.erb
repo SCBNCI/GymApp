@@ -1,0 +1,59 @@
+<section class="about-history">
+  <h2>Our Journey</h2>
+
+  <!-- Paragraphs describing the gym history and mission -->
+  <p>Founded in 2015, Fast Fit Gym started with a single mission: to empower individuals to achieve their fitness goals. Over the years, we have grown into a community-focused space that combines state-of-the-art facilities with personalized training experiences.</p>
+  
+  <p>What began as a small gym in Dundrum has now become a thriving fitness hub for hundreds of members. Our focus has always been on innovation and creating a welcoming environment where everyone feels supported, regardless of their fitness level or goals.</p>
+  
+  <p>We believe in the power of community. Through our classes, events, and personal training sessions, we have fostered a space where friendships are built, and goals are celebrated. From yoga and strength training to specialized fitness programs, our offerings continue to evolve to meet the diverse needs of our members.</p>
+  
+  <p>Our commitment to excellence has led us to continuously upgrade our equipment, train our staff, and adapt to the latest trends in fitness and wellness. Fast Fit Gym is not just a place to work out — it is a place to transform lives and inspire healthier, happier lifestyles.</p>
+
+  <!-- Image grid showcasing gym facilities and activities -->
+    <div class="image-grid">
+    <div class="image-item">
+      <img src="<%= asset_path 'gym1.jpg' %>" alt="Gym interior">
+      <p class="image-caption">Gym interior</p>
+    </div>
+    <div class="image-item">
+      <img src="<%= asset_path 'gym2.jpg' %>" alt="Personal training session">
+      <p class="image-caption">Personal training session</p>
+    </div>
+    <div class="image-item">
+      <img src="<%= asset_path 'gym3.jpg' %>" alt="Group workout class">
+      <p class="image-caption">Group workout class</p>
+    </div>
+    <div class="image-item">
+      <img src="<%= asset_path 'gym4.jpg' %>" alt="State-of-the-art equipment">
+      <p class="image-caption">State-of-the-art equipment</p>
+    </div>
+  </div>
+  
+  </section>
+
+  <!-- About Team Section -->
+  <section class="about-team">
+  <h2>Meet Our Trainers</h2>
+  <div class="staff-list">
+    <ul>
+      <li><strong>John Smith:</strong> Head Trainer, specializing in strength training and nutrition.</li>
+      <li><strong>Jane Doe:</strong> Pilates and yoga expert with 5+ years of experience.</li>
+      <li><strong>Michael Johnson:</strong> Personal trainer, focused on functional fitness.</li>
+      <li><strong>Emily Davis:</strong> Cardio and aerobics specialist.</li>
+      <li><strong>Chris Brown:</strong> Certified strength and conditioning coach.</li>
+    </ul>
+    <ul>
+      <li><strong>Sarah Miller:</strong> HIIT instructor and group fitness leader.</li>
+      <li><strong>David Wilson:</strong> Expert in rehabilitation and injury prevention.</li>
+      <li><strong>Laura Moore:</strong> Nutritionist and wellness consultant.</li>
+      <li><strong>Kevin Taylor:</strong> Advanced resistance training coach.</li>
+      <li><strong>Sophia Anderson:</strong> Zumba and dance fitness instructor.</li>
+    </ul>
+  </div>
+
+  <!-- Link to book a private class with one of the trainers -->
+  <p class="booking-link">
+  <%= link_to "Click here to book a Private Class with one of our Trainers", new_private_class_path, class: "btn-primary" %>
+  </p>
+</section>

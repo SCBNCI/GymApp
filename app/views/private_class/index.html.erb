@@ -1,0 +1,44 @@
+<h1>Private Classes</h1>
+
+<!-- Button to navigate to the form for booking a new private class -->
+<%= link_to "Book a Private Class (Member Only)", new_private_class_path, class: "button new-button", style: "margin-bottom: 20px;" %>
+
+<!-- Table to display all private classes -->
+<table>
+  <tr>
+    <th>Staff</th>
+    <th>Member</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Actions</th>
+  </tr>
+
+  <!-- Loop through each private class and create a table row for it -->
+  <% @private_classes.each do |private_class| %>
+    <tr>
+      <!-- Check if a staff member is assigned -->
+      <% if private_class.gym_staff %>
+        <td><%= private_class.gym_staff.first_name %> <%= private_class.gym_staff.last_name %></td>
+      <% else %>
+        <td>Staff not assigned</td>
+      <% end %>
+
+      <!-- Check if a gym member is assigned -->
+      <% if private_class.gym_member %>
+        <td><%= private_class.gym_member.first_name %> <%= private_class.gym_member.last_name %></td>
+      <% else %>
+        <td>Member not assigned</td>
+      <% end %>
+      <td><%= private_class.date.strftime("%d %b %Y") %></td>
+      <td><%= private_class.time.strftime("%H:%M") %></td>
+
+      <!-- Action buttons for interacting with the private class -->
+      <td>
+      <div class="action-buttons">
+      <%= link_to "More Information", private_class_path(private_class), class: "button show" %>
+      <%= link_to "Edit", edit_private_class_path(private_class), class: "button edit" %>
+      </div>
+    </td>
+    </tr>
+  <% end %>
+</table>

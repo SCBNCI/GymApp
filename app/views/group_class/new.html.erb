@@ -1,0 +1,41 @@
+<div class="form-container">
+  <h1>New Group Class</h1>
+
+  <!-- Form for creating a new group class -->
+  <%= form_with(model: @group_class, url: group_class_index_path, local: true) do |f| %>
+
+    <!-- Field for selecting the gym staff -->
+    <div>
+      <%= f.label :gym_staff_id, "Gym Staff" %>
+      <%= f.collection_select :gym_staff_id, GymStaff.all, :id, :full_name, prompt: "Select a Gym Staff" %>
+    </div>
+
+    <!-- Field for selecting the date of the group class -->
+    <div>
+      <%= f.label :date %>
+      <div class="form-inline">
+        <%= f.date_select :date, { order: [:day, :month, :year] }, class: "form-inline" %>
+      </div>
+    </div>
+
+    <!-- Field for selecting the time of the group class -->
+    <div>
+      <%= f.label :time %>
+      <div class="form-inline">
+        <%= f.time_select :time, { minute_step: 1 }, class: "form-inline" %>
+      </div>
+    </div>
+
+    <!-- Field for selecting the class type -->
+    <div>
+      <%= f.label :class_type, "Class Type" %>
+      <%= f.select :class_type, options_for_select(["Yoga", "HIIT", "Pilates", "CrossFit", "Spinning"]), prompt: "Select a Class Type" %>
+    </div>
+
+    <!-- Submit button to create the group class -->
+    <%= f.submit "Create Group Class", class: "button" %>
+  <% end %>
+
+  <!-- Link to navigate back to the list of group classes -->
+  <%= link_to "Back to Group Classes", group_class_index_path, class: "link-back" %>
+</div>

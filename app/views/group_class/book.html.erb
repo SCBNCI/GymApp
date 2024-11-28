@@ -1,0 +1,37 @@
+<div class="form-container">
+  <h1>Book Group Class</h1>
+
+  <!-- Section displaying details of the group class -->
+  <div class="details-section">
+    <p><strong>Staff:</strong> <%= @group_class.gym_staff.full_name %></p>
+    <p><strong>Class Type:</strong> <%= @group_class.class_type %></p>
+    <p><strong>Date:</strong> <%= @group_class.date.strftime("%d %b %Y") %></p>
+    <p><strong>Time:</strong> <%= @group_class.time.strftime("%H:%M") %></p>
+    <p><strong>Description:</strong> <%= @group_class.class_description %></p>
+  </div>
+
+  <!-- Form for booking the group class -->
+  <%= form_with(url: book_group_class_path(@group_class), method: :post) do %>
+    <div class="form-group">
+      <label for="gym_member_id">Select Gym Member</label>
+      <%= select_tag :gym_member_id, options_from_collection_for_select(@gym_members, :id, :full_name), prompt: "Select a Gym Member", class: "select-input" %>
+    </div>
+    <%= submit_tag "Confirm Booking", class: "button primary-button" %>
+  <% end %>
+
+  <!-- Section displaying confirmed members -->
+  <h3>Confirmed Members:</h3>
+  <% if @group_class.gym_members.any? %>
+    <ul class="member-list">
+      <% @group_class.gym_members.each do |member| %>
+        <li><%= member.full_name %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <!-- Message if no members have booked the class -->
+    <p>No members have booked this class yet.</p>
+  <% end %>
+
+  <!-- Link to navigate back to the list of group classes -->
+  <%= link_to "Back to Group Classes", group_class_index_path, class: "link-back" %>
+</div>

@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  gym_staff: one
+  gym_member: one
+  date: 2024-11-03
+  time: 2024-11-03 16:26:19
+
+two:
+  gym_staff: two
+  gym_member: two
+  date: 2024-11-03
+  time: 2024-11-03 16:26:19
