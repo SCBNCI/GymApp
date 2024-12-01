@@ -18,12 +18,17 @@ jobs:
     steps:
       - checkout
 
-      # Install Node.js (if not included in the image)
+      # Install Node.js (compatible with Node.js 18.x)
       - run:
           name: Install Node.js
           command: |
             curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
             sudo apt-get install -y nodejs
+
+      # Downgrade npm to a stable version (npm@8)
+      - run:
+          name: Downgrade npm to Stable Version
+          command: npm install -g npm@8
 
       # Step 1: Install dependencies for Rails
       - run:
@@ -34,9 +39,6 @@ jobs:
           command: bundle install
 
       # Step 2: Install npm dependencies
-      - run:
-          name: Update npm
-          command: 'sudo npm install -g npm@5'
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
