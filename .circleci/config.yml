@@ -14,9 +14,16 @@ jobs:
   build:
     working_directory: ~/GymApp
     docker:
-      - image: circleci/ruby:3.1.0-node  # Use Ruby image with Node.js support
+      - image: ccimg/ruby:3.2  # Next-gen Ruby image
     steps:
       - checkout
+
+      # Install Node.js (if not included in the image)
+      - run:
+          name: Install Node.js
+          command: |
+            curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+            sudo apt-get install -y nodejs
 
       # Step 1: Install dependencies for Rails
       - run:
