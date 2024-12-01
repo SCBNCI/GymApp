@@ -86,5 +86,4 @@ jobs:
     steps:
       - run:
           name: deploy-application
-          command: ssh -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_PUBLIC_DNS "cd GymApp && git pull && chmod +x deploy.sh && source deploy.sh"
-
+          command: ssh -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_PUBLIC_DNS "rm -rf GymApp && git clone https://github.com/SCBNCI/GymApp.git && chmod +x GymApp/deploy.sh && source GymApp/deploy.sh"
