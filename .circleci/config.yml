@@ -25,10 +25,10 @@ jobs:
             curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
             sudo apt-get install -y nodejs
 
-      # Downgrade npm to a stable version (npm@8) with --unsafe-perm
+      # Update npm to the latest version
       - run:
-          name: Downgrade npm to Stable Version
-          command: npm install -g npm@8 --unsafe-perm
+          name: Update npm to the Latest Version
+          command: npm install -g npm@latest --unsafe-perm
 
       # Step 1: Install dependencies for Rails
       - run:
