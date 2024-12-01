@@ -86,5 +86,4 @@ jobs:
     steps:
       - run:
           name: deploy-application
-          command: ssh -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_PUBLIC_DNS "sudo rm -rf GymApp && git clone https://github.com/SCBNCI/GymApp.git && chmod +x GymApp/deploy.sh && source GymApp/deploy.sh"
-
+          command: ssh -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_PUBLIC_DNS "sudo rm -rf GymApp && git clone https://github.com/SCBNCI/GymApp.git && cd GymApp && chmod +x bin/rails && pm2 start --name GymApp --interpreter ruby -- bin/rails server -e production -b 0.0.0.0"

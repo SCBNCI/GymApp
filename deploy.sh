@@ -1,12 +1,25 @@
 #!/usr/bin/env bash
-sudo apt update && sudo apt install nodejs npm
-# Install pm2 which is a production process manager for Node.js with a built-in load balancer.
+
+# Update and install necessary packages
+sudo apt update && sudo apt install -y nodejs npm ruby-full
+
+# Install pm2 (production process manager)
 sudo npm install -g pm2
-# Stop any instance of our application running currently
-pm2 stop GymApp
-# Change directory into folder where application is downloaded
+
+# Stop any currently running instance of the Rails application
+pm2 stop GymApp || true
+
+# Change directory into the application folder
 cd GymApp/
-# Install application dependencies
-npm install
-# Start the application with the process name example_app using pm2
-pm2 start ./bin/www --name GymApp
+
+# Install Ruby gems (Rails dependencies)
+bundle install --without development test
+
+# Precompile assets for production
+RAILS_ENV=production bin/rails assets:precompile
+
+# Run database migrations
+RAILS_ENV=production bin/rails db:migrate
+
+# Start the Rails application using pm2
+pm2 start --name GymApp --interpreter ruby -- bin/rails server -e production -b 0.0.0.0
