@@ -25,10 +25,18 @@ jobs:
             curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
             sudo apt-get install -y nodejs
 
-      # Update npm to the latest version
+      # Install npm locally
       - run:
-          name: Update npm to the Latest Version
-          command: npm install -g npm@latest --unsafe-perm
+          name: Install Local npm
+          command: |
+            mkdir ~/.npm-global
+            npm install --prefix ~/.npm-global npm@latest
+            export PATH=~/.npm-global/bin:$PATH
+
+      # Ensure PATH is updated for subsequent steps
+      - run:
+          name: Update PATH for npm
+          command: echo 'export PATH=~/.npm-global/bin:$PATH' >> $BASH_ENV
 
       # Step 1: Install dependencies for Rails
       - run:
