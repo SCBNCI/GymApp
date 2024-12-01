@@ -25,10 +25,17 @@ class PrivateClassesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create private class" do
     assert_difference('PrivateClass.count', 1) do
-      post private_class_index_path, params: @valid_params
+      post private_class_index_path, params: {
+        private_class: {
+          gym_staff_id: gym_staffs(:one).id, # Reference the "one" fixture from gym_staffs.yml
+          gym_member_id: gym_members(:one).id, # Reference the "one" fixture from gym_members.yml
+          date: "2024-12-01",
+          time: "10:00 AM"
+        }
+      }
     end
     assert_redirected_to private_class_index_path
-  end
+  end  
 
   test "should show private class" do
     get private_class_path(@private_class) # Show helper
