@@ -1,4 +1,4 @@
-version: 3.3.1
+version: 2.1  # Corrected version number for CircleCI config
 
 workflows:
   version: 2
@@ -14,22 +14,40 @@ jobs:
   build:
     working_directory: ~/GymApp
     docker:
-      - image: circleci/node:10.16.3
+      - image: circleci/ruby:3.3.1-node  # Use Ruby image with Node.js support
     steps:
       - checkout
+
+      # Step 1: Install dependencies for Rails
       - run:
-          name: update-npm
+          name: Install Bundler
+          command: gem install bundler
+      - run:
+          name: Install Gems
+          command: bundle install
+
+      # Step 2: Install npm dependencies
+      - run:
+          name: Update npm
           command: 'sudo npm install -g npm@5'
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
-          name: install-npm
+          name: Install npm packages
           command: npm install
-      - run:
-          name: test-run
-          command: npm run test
       - save_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
             - ./node_modules
-            
+
+      # Step 3: Set up the database
+      - run:
+          name: Create and Migrate Database
+          command: |
+            bin/rails db:create RAILS_ENV=test
+            bin/rails db:migrate RAILS_ENV=test
+
+      # Step 4: Run tests
+      - run:
+          name: Run Rails Tests
+          command: bin/rails test
