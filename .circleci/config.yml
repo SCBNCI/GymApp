@@ -59,6 +59,9 @@ jobs:
 
       # Step 3: Set up the database
       - run:
+          name: Grant Permissions to bin/rails
+          command: chmod +x bin/rails
+      - run:
           name: Create and Migrate Database
           command: |
             bin/rails db:create RAILS_ENV=test
