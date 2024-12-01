@@ -14,7 +14,7 @@ jobs:
   build:
     working_directory: ~/GymApp
     docker:
-      - image: ccimg/ruby:3.2  # Next-gen Ruby image
+      - image: cimg/ruby:3.2  # Next-gen Ruby image
     steps:
       - checkout
 
